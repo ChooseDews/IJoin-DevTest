@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row" id="login-panel">
+    <div class="col l6 m8 offset-l3 offset-m2 s12">
+      <div class="card white login-panel">
+        <div class="center">
+          <img class="logo" src="logo.png">
+          <h2 class="title-text">Finance</h2>
+        </div>
+        <div ng-show="error">
+          <br>
+          <h5 class="error red-text center">{{error}}</h5>
+        </div>
+        <form ng-submit="login(email,password)">
+          <div class="card-content">
+            <div class="row">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input ng-model="email" id="email" name="username" type="email" class="validate" require>
+                  <label for="email">Email</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input ng-model="password" id="password" name="password" type="password" class="validate" require>
+                  <label for="password">Password</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="btn login black-text waves-effect waves-light btn-large" type="submit" name="action">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

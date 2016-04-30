@@ -1,0 +1,99 @@
+<br>
+<br>
+<div class="container white">
+	<content>
+		<div class="center">
+			<div>
+				<i ng-hide="edit" class="small material-icons right" ng-click="edit = !edit" style="padding: 10px;">mode_edit</i>
+				<i ng-show="edit" class="small material-icons right" ng-click="edit = !edit" style="padding: 10px;">check</i>
+				<div style="clear:both;"></div>
+			</div>
+			<img class="circle responsive-img" ng-src="{{me.picture}}">  <!-- Picture uses place holders! -->
+			<h3 ng-hide="edit">{{me.name.first}} {{me.name.last}}</h3>
+
+
+
+
+
+ <!-- Using debounce we get the best of both worlds, not using up lots of server time while also allowing for live update fetures -->
+
+
+
+			<div class="row" ng-show="edit">
+				<div class="input-field col offset-l3 l3 m6 s12">
+					<input placeholder="First Name" id="first_name" ng-model="me.name.first" type="text" class="validate" ng-change="update(me)" ng-model-options='{ debounce: 1000 }'>
+				</div>
+				<div class="input-field col l3 m6 s12">
+					<input placeholder="Last Name" id="last_name" ng-model="me.name.last" type="text" class="validate" ng-change="update(me)" ng-model-options='{ debounce: 1000 }'>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+		</div>
+	</content>
+</div>
+<br>
+<div class="container">
+	<div class="row">
+		<div class="col m6 s12">
+			<div class="card" id="baseCard">
+				<ul class="collection stats" ng-class="{'edit':edit}">
+					<li class="collection-item input-field">
+						<span ng-hide="edit"><i class="material-icons left">phone</i>{{me.phone}}</span>
+						<input ng-show="edit" id="icon_prefix" ng-model="me.phone" type="text" placeholder="Phone Number" ng-change="update(me)" ng-model-options='{ debounce: 1000 }'>
+					</li>
+					<li class="collection-item input-field">
+						<span ng-hide="edit"><i class="material-icons left">email</i>{{me.email}}</span>
+						<input ng-show="edit" ng-model="me.email" type="email" placeholder="Email" ng-change="update(me)" ng-model-options='{ debounce: 1000 }'>
+					</li>
+					<li class="collection-item input-field">
+						<span ng-hide="edit"><i class="material-icons left">work</i>{{me.company}}</span>
+						<input ng-show="edit" ng-model="me.company" type="text" placeholder="Company" ng-change="update(me)" ng-model-options='{ debounce: 1000 }'>
+					</li>
+					<li class="collection-item input-field">
+						<span ng-hide="edit"><i class="material-icons left">query_builder</i>{{me.age}} Years Old</span>
+						<input ng-show="edit" ng-model="me.age" type="number" placeholder="Age" ng-change="update(me)" ng-model-options='{ debounce: 1000 }'>
+					</li>
+					<li class="collection-item input-field">
+						<span ng-hide="edit"><i class="material-icons left">visibility</i>{{me.eyeColor.toUpperCase()}}</span>
+						<input ng-show="edit" ng-model="me.eyeColor" type="text" placeholder="Eye Color" ng-change="update(me)" ng-model-options='{ debounce: 1000 }'>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col m6 s12">
+			<div class="card" id="subCard">
+				<div class="card-content center">
+					<br>
+					<span class="card-title">Address</span>
+					<p ng-hide="edit">{{me.address}}</p>
+					<textarea ng-show="edit" ng-model="me.address" class="materialize-textarea" ng-change="update(me)" ng-model-options='{ debounce: 1000 }'></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container white">
+	<content>
+		<div class="center">
+			<h3>Account Balance:
+				<span class="green-text">{{me.balance}}</span>
+			</h3>
+		</div>
+	</content>
+</div>
+<br>
+<br>
+<footer class="page-footer blue darken-2">
+	<div class="container">
+		<div class="center">
+			<h1 class="title-text white-text">ACME Financial</h1>
+		</div>
+	</div>
+	<div class="footer-copyright">
+		<div class="container">
+			ACME Financial © 2016
+			<a class="grey-text text-lighten-4 right" target="_top" href="/api/logout">Sign Out</a> <!-- _top is imporant otherwise we would just move around the angular app -->
+		</div>
+	</div>
+</footer>
