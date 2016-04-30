@@ -1,14 +1,26 @@
 <br>
 <br>
+
+<style>
+
+.ng-invalid{
+
+border-bottom-color: red !important;
+
+}
+
+</style>
+
 <div class="container white">
 	<content>
 		<div class="center">
 			<div>
-				<i ng-hide="edit" class="small material-icons right" ng-click="edit = !edit" style="padding: 10px;">mode_edit</i>
-				<i ng-show="edit" class="small material-icons right" ng-click="edit = !edit" style="padding: 10px;">check</i>
+				<a class="waves-effect waves-light btn right blue darken-2" ng-hide="edit" ng-click="edit = !edit"><i class="material-icons left">mode_edit</i>Edit</a>
+				<a class="waves-effect waves-light btn right blue darken-2" ng-show="edit" ng-click="finish(me)"><i class="material-icons left">mode_edit</i>Finish</a>
+
 				<div style="clear:both;"></div>
 			</div>
-			<img class="circle responsive-img" ng-src="{{me.picture}}">  <!-- Picture uses place holders! -->
+			<img class="circle responsive-img" ng-src="{{picture}}">  <!-- Picture uses place holders! -->
 			<h3 ng-hide="edit">{{me.name.first}} {{me.name.last}}</h3>
 
 
@@ -16,7 +28,6 @@
 
 
  <!-- Using debounce we get the best of both worlds, not using up lots of server time while also allowing for live update fetures -->
-
 
 
 			<div class="row" ng-show="edit">
@@ -40,7 +51,7 @@
 				<ul class="collection stats" ng-class="{'edit':edit}">
 					<li class="collection-item input-field">
 						<span ng-hide="edit"><i class="material-icons left">phone</i>{{me.phone}}</span>
-						<input ng-show="edit" id="icon_prefix" ng-model="me.phone" type="text" placeholder="Phone Number" ng-change="update(me)" ng-model-options='{ debounce: 1000 }'>
+						<input ng-show="edit" id="icon_prefix" ng-model="me.phone" type="text" placeholder="Phone Number" ng-change="update(me)" ng-model-options='{ debounce: 1000 }' phone-input ng-model-options='{ debounce: 1000 }'>
 					</li>
 					<li class="collection-item input-field">
 						<span ng-hide="edit"><i class="material-icons left">email</i>{{me.email}}</span>

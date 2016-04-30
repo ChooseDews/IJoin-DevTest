@@ -6,6 +6,7 @@ var sanitizer = require('sanitizer');
 var clone = require('clone');
 var storage = require('lowdb/file-sync');
 var db = low('../data/users.json', { storage: storage }); //loadin the data
+var validator = require('validator');
     /* GET users listing. */
 router.get('/', function(req, res) {
     res.send('pong'); //Always good to have an api reach test;
@@ -21,10 +22,17 @@ router.get('/me', passport.isAuthenticated, function(req,res){
 router.post('/update', passport.isAuthenticated, function(req,res){
   var user = db('users').find({_id: req.user._id});
   var payload = req.body;
-  user.name.first = sanitizer.sanitize(payload.name.first); //make sure they don't put any sneaky script tags in!
-  user.name.last = sanitizer.sanitize(payload.name.last);
+
+  if(payload.name.first){
+    user.name.first = sanitizer.sanitize(payload.name.first); //make sure they don't put any sneaky script tags in!
+  }
+  if(payload.name.last){ //Don't let them delete there name
+    user.name.last = sanitizer.sanitize(payload.name.last); //make sure they don't put any sneaky script tags in!
+  }
   user.company = sanitizer.sanitize(payload.company);
-  user.email = sanitizer.sanitize(payload.email); //mainly trusting angular and html fields to ensure valid input, could use validator.js to address this if a double check is needed
+  if(payload.email && validator.isEmail(sanitizer.sanitize(payload.email))){ //Email is important makes sure we have it, this ensures we never save a "half" email
+        user.email = sanitizer.sanitize(payload.email);
+  }
   user.age = sanitizer.sanitize(payload.age);
   user.phone = sanitizer.sanitize(payload.phone);
   user.address = sanitizer.sanitize(payload.address);
