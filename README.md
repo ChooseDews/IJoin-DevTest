@@ -1,19 +1,24 @@
 
+![alt tag](https://raw.githubusercontent.com/ChooseDews/IJoin-DevTest/master/client/logo.png)
+
+
 # John Dews' ACME Financial
 
 
 
-The api and the client are separated; however the /api runtime will serve the client up at localhost:3000/
+The api and the client are separated; however the /api runtime will serve the client up at ```localhost:3000/```
 This app uses angular 1.x.x for the client side and express for the api, and conforms to run on node.js v0.10 =<
 
-I hade to modify the ```users.json``` file a tiny bit by adding a name for the array of users so that lowdb could pick it up.
+I had to modify the ```users.json``` file a tiny bit by adding a name for the array of users so that lowdb could pick it up.
+
+>Sidenote:
+>Rather then using the filler images in the user.json set I used https://randomuser.me to get random images for the profiles.
 
 
-How to Run:
 
-With node & npm installed within the /api directory run ```npm install && npm start```
+# How to Run:
 
-
+With node & npm installed within the ```/api``` directory run ```npm install && npm start```
 
 
 
@@ -44,6 +49,6 @@ This exercise is meant showcase your creativity and talent in problem solving ag
 
 ## Bonus Points
 
-* Fully responsive UI
+* Fully responsive UI :)
 * Unit Tests of the API
 * Functional Tests of the UI
