@@ -1,15 +1,17 @@
 
+# John Dews' ACME Financial
 
 
 
+The api and the client are separated; however the /api runtime will serve the client up at localhost:3000/
+This app uses angular 1.x.x for the client side and express for the api, and conforms to run on node.js v0.10 =<
 
-The api and the client are separated, however the /api runtime will serve the client up at localhost:3000
-This app uses angular 1.x.x for the client side and express for the api, and conforms to run on node.js v0.10
-
-
-
+I hade to modify the ```users.json``` file a tiny bit by adding a name for the array of users so that lowdb could pick it up.
 
 
+How to Run:
+
+With node & npm installed within the /api directory run ```npm install && npm start```
 
 
 
